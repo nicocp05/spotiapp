@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotiService } from '../../services/spoti.service';
+import { SpotiResponse } from '../../interfaces/new-releases';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,8 @@ import { SpotiService } from '../../services/spoti.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  newRelease: SpotiResponse[] = [];
 
   constructor( private spotiService: SpotiService) {}
 
@@ -16,8 +19,8 @@ export class HomeComponent implements OnInit {
 
   getNewRealease() {
     this.spotiService.getNewRealease()
-      .subscribe( res => console.log( res )
-      );
+      .subscribe( (res: SpotiResponse) => console.log(res.albums.items)
+      )   
   }
 
 }
